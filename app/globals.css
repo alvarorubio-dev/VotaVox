@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green-dark: #1B5E20;
+  --green-mid: #2E7D32;
+  --green-accent: #4CAF50;
+  --red-spain: #AA151B;
+  --text-primary: #111827;
+  --bg-base: #FAFAFA;
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 123 80% 24%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 0 0% 96%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 357 79% 37%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 123 80% 24%;
+  --radius: 0.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-heading {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.typewriter-cursor::after {
+  content: '|';
+  animation: blink 0.8s step-end infinite;
+  color: #4CAF50;
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.btn-primary {
+  background: var(--green-dark);
+  border: 2px solid transparent;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--green-mid);
+  border-color: var(--red-spain);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(27, 94, 32, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.reason-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reason-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--red-spain);
+  transition: width 0.4s ease;
+}
+
+.reason-card:hover::after {
+  width: 100%;
+}
+
+.reason-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(27, 94, 32, 0.15);
+}
+
+.faq-item {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+.faq-item:hover {
+  background: rgba(27, 94, 32, 0.02);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.float-badge {
+  animation: float 3s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a5d6a7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.counter-pill {
+  background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+  box-shadow: 0 4px 30px rgba(27, 94, 32, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--green-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-mid);
+}
