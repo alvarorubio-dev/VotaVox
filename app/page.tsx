@@ -19,6 +19,9 @@ import LegalModal from '@/components/LegalModal';
 import PrivacyModal from '@/components/PrivacyModal';
 import FloatingButtons from '@/components/FloatingButtons';
 
+// 1. Importamos la constante FAQS (Asegúrate de que la ruta sea correcta)
+import { FAQS } from '@/lib/constants';
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
@@ -35,8 +38,25 @@ export default function Home() {
     setCounterRefresh((n) => n + 1);
   }, []);
 
+  // 2. Generamos el objeto JSON-LD para esta página
+  const jsonLdFAQ = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  };
+
   return (
     <>
+      {/* 3. Inyectamos el script para Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
+      />
+
       <Header onCommitClick={openModal} />
       <main id="main-content">
         <HeroSection onCommitClick={openModal} />
