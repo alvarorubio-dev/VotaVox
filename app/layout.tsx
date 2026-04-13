@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
-import { SITE_CONFIG, FAQS } from '@/lib/constants';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -77,27 +77,6 @@ const jsonLdOrganization = {
   disclaimer: SITE_CONFIG.disclaimer,
 };
 
-const jsonLdFAQ = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQS.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-  })),
-};
-
-const jsonLdBreadcrumb = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_CONFIG.url },
-    { '@type': 'ListItem', position: 2, name: 'Quiénes Somos', item: `${SITE_CONFIG.url}/quienes-somos` },
-    { '@type': 'ListItem', position: 3, name: 'FAQ', item: `${SITE_CONFIG.url}/faq` },
-    { '@type': 'ListItem', position: 4, name: 'Transparencia', item: `${SITE_CONFIG.url}/transparencia` },
-  ],
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es-ES">
@@ -108,8 +87,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       </head>
       <body>
         <a
