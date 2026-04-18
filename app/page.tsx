@@ -1,26 +1,23 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import DisclaimerBanner from '@/components/DisclaimerBanner';
-import IntroSection from '@/components/IntroSection';
-import ReasonsSection from '@/components/ReasonsSection';
-import BenefitsSection from '@/components/BenefitsSection';
-import RealitySection from '@/components/RealitySection';
-import CounterSection from '@/components/CounterSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import FaqSection from '@/components/FaqSection';
-import EditorialSection from '@/components/EditorialSection';
-import ClosingCTA from '@/components/ClosingCTA';
-import Footer from '@/components/Footer';
-import CommitmentModal from '@/components/CommitmentModal';
-import LegalModal from '@/components/LegalModal';
-import PrivacyModal from '@/components/PrivacyModal';
-import FloatingButtons from '@/components/FloatingButtons';
-
-// 1. Importamos la constante FAQS (Asegúrate de que la ruta sea correcta)
-import { FAQS } from '@/lib/constants';
+import { useState, useCallback } from "react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import DisclaimerBanner from "@/components/DisclaimerBanner";
+import IntroSection from "@/components/IntroSection";
+import ReasonsSection from "@/components/ReasonsSection";
+import BenefitsSection from "@/components/BenefitsSection";
+import RealitySection from "@/components/RealitySection";
+import CounterSection from "@/components/CounterSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FaqSection from "@/components/FaqSection";
+import EditorialSection from "@/components/EditorialSection";
+import ClosingCTA from "@/components/ClosingCTA";
+import Footer from "@/components/Footer";
+import CommitmentModal from "@/components/CommitmentModal";
+import LegalModal from "@/components/LegalModal";
+import PrivacyModal from "@/components/PrivacyModal";
+import FloatingButtons from "@/components/FloatingButtons";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,25 +35,11 @@ export default function Home() {
     setCounterRefresh((n) => n + 1);
   }, []);
 
-  // 2. Generamos el objeto JSON-LD para esta página
-  const jsonLdFAQ = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQS.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-    })),
-  };
+  // ELIMINADO: const jsonLdFAQ = { ... }
 
   return (
     <>
-      {/* 3. Inyectamos el script para Google */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
-      />
-
+      {/* ELIMINADO: <script type="application/ld+json">... */}
       <Header onCommitClick={openModal} />
       <main id="main-content">
         <HeroSection onCommitClick={openModal} />
@@ -65,7 +48,10 @@ export default function Home() {
         <ReasonsSection />
         <BenefitsSection onCommitClick={openModal} />
         <RealitySection />
-        <CounterSection onCommitClick={openModal} refreshTrigger={counterRefresh} />
+        <CounterSection
+          onCommitClick={openModal}
+          refreshTrigger={counterRefresh}
+        />
         <TestimonialsSection />
         <FaqSection />
         <EditorialSection />
